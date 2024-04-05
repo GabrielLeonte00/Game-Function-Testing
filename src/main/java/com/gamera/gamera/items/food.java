@@ -1,6 +1,6 @@
-package com.gamera.gamera.items.fruits;
+package com.gamera.gamera.items;
 
-import com.gamera.gamera.classes.item;
+import com.gamera.gamera.items.item;
 
 public class food implements item {
     int id;

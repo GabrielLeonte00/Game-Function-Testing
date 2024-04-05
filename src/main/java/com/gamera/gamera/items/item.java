@@ -1,4 +1,4 @@
-package com.gamera.gamera.classes;
+package com.gamera.gamera.items;
 
 public interface item {
     String getName();

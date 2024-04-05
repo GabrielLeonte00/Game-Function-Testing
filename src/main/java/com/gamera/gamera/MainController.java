@@ -1,11 +1,11 @@
 package com.gamera.gamera;
 
-import com.gamera.gamera.classes.item;
+import com.gamera.gamera.items.armor;
+import com.gamera.gamera.items.item;
 import com.gamera.gamera.classes.key_handler;
 import com.gamera.gamera.classes.player;
-import com.gamera.gamera.items.fruits.food;
+import com.gamera.gamera.items.food;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -55,9 +55,15 @@ public class MainController {
         food apple = new food("fruit", "apple", 10);
         food carrot = new food("vegetable", "carrot", 7);
         food apricot = new food("forage", "apricot", 20);
+        armor headpiece1 = new armor("head", "Wolf headpiece armor");
+        armor headpiece2 = new armor("head", "Leather headpiece armor");
+        armor chestPlate = new armor("chest", "Iron chest plate");
         list.add(apple);
         list.add(carrot);
         list.add(apricot);
+        list.add(headpiece1);
+        list.add(headpiece2);
+        list.add(chestPlate);
 
         ObservableList<String> inventoryList = FXCollections.observableArrayList();
         for(item item : list){
