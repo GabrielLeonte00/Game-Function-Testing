@@ -4,18 +4,22 @@ import com.gamera.gamera.MainApplication;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TitledPane;
 
-public class player_movement {
+public class key_handler {
 
     private final Scene scene;
     private final player player;
     private final ProgressBar health_bar;
+    private final TitledPane inventory_window;
     boolean goNorth, goSouth, goWest, goEast;
 
-    public player_movement(player player, ProgressBar health_bar) {
+    public key_handler(player player, ProgressBar health_bar, TitledPane inventory_window) {
         scene = MainApplication.getScene();
         this.player = player;
         this.health_bar = health_bar;
+        this.inventory_window = inventory_window;
         movement(); // Initialize movement controls
         startGameLoop(); // Start the game loop
     }
@@ -57,6 +61,9 @@ public class player_movement {
                 case J:
                     player.changeCurrent_health_points(-5);
                     health_bar.setProgress(player.getHealth_points());
+                    break;
+                case I:
+                    inventory_window.setVisible(!inventory_window.isVisible());
                     break;
             }
         });
