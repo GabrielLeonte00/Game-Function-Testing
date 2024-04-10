@@ -7,20 +7,25 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.math.BigDecimal;
+
 public class food extends Label implements item {
-    int id;
+    //int id;
     String type; // forage | vegetable | fruit
     String name;
-    double growth = 0;
-    double freshness = 1;
-    double quality = 1;
-    double base_price;
+    BigDecimal growth = BigDecimal.valueOf(0); // 0 -> 1
+    BigDecimal freshness = BigDecimal.valueOf(1); // 1 -> -0.2
+    BigDecimal increment = BigDecimal.valueOf(0.1);
+    BigDecimal quality = BigDecimal.valueOf(1);
+    BigDecimal base_price;
+    BigDecimal price;
 
     public food(String type, String name, double base_price) {
         super();
         this.type = type;
         this.name = name;
-        this.base_price = base_price;
+        this.base_price = BigDecimal.valueOf(base_price);
+        updatePrice();
         draw();
     }
 
@@ -40,16 +45,39 @@ public class food extends Label implements item {
         setGraphic(group);
     }
 
+    public BigDecimal getGrowth(){
+        return growth;
+    }
+
+    public void setGrowth(double growth) {
+        this.growth = BigDecimal.valueOf(growth);
+        updatePrice();
+    }
+
+    public void updateGrowth() {
+        if(growth.compareTo(BigDecimal.valueOf(1)) != 0){
+            growth = growth.add(increment);
+            updatePrice();
+        }
+    }
+
+    public void updateFreshness() {
+        if(freshness.compareTo(BigDecimal.valueOf(-0.2)) != 0){
+            freshness = freshness.subtract(increment);
+            updatePrice();
+        }
+    }
+
+    public void updatePrice(){
+        price = growth.add(freshness).multiply(quality).multiply(base_price);
+    }
+
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
-        return base_price;
-    }
-
     public String getDetails() {
-        return STR."Growth : \{growth}\n Freshness : \{freshness}\n Quality : \{quality}\n Price : \{base_price}";
+        return STR."Growth : \{growth}\n Freshness : \{freshness}\n Quality : \{quality}\n Price : \{price}";
     }
 
 }

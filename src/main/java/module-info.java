@@ -10,6 +10,7 @@ module com.gamera.gamera {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires annotations;
 
     opens com.gamera.gamera to javafx.fxml;
     exports com.gamera.gamera;

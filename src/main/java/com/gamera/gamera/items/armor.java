@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class armor extends Label implements item {
-    int id;
+    //int id;
     String type; // head piece || chest piece || arm piece || hand piece || pants || shoes
     String name;
 
@@ -41,10 +41,6 @@ public class armor extends Label implements item {
 
     public String getName() {
         return name;
-    }
-
-    public double getPrice() {
-        return base_price;
     }
 
     public String getDetails() {
