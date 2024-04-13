@@ -28,6 +28,7 @@ public class MainController {
     //Variables
     private double offset_initialX, offset_initialY;
     private final List<item> list = new ArrayList<>();
+    private player player;
     //FXML Variables
     @FXML
     AnchorPane main_window;
@@ -49,7 +50,7 @@ public class MainController {
         timeline.play();
 
         in_game_menu.setVisible(true);
-        player player = new player();
+        player = new player();
 
         new key_handler(player, health_bar, inventory_window);
         inventory_functions();
@@ -147,6 +148,8 @@ public class MainController {
                             if (event.getButton() == PRIMARY)
                                 System.out.println(item.getName());
                             else if (event.getButton() == SECONDARY) {
+                                ((Node) item).setLayoutX(player.getLayoutX());
+                                ((Node) item).setLayoutY(player.getLayoutY() + player.getHeight() - ((Node) item).getBoundsInLocal().getHeight());
                                 addItemToGameScene(item);
                                 inventory_list_view.getItems().remove(item);
                                 tooltip.hide();
