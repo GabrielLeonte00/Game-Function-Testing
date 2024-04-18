@@ -4,7 +4,6 @@ import com.gamera.gamera.MainApplication;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TitledPane;
 
 public class key_handler {
@@ -13,13 +12,16 @@ public class key_handler {
     private final player player;
     private final ProgressBar health_bar;
     private final TitledPane inventory_window;
+    private final TitledPane character_inventory_window;
+
     boolean goNorth, goSouth, goWest, goEast;
 
-    public key_handler(player player, ProgressBar health_bar, TitledPane inventory_window) {
+    public key_handler(player player, ProgressBar health_bar, TitledPane inventory_window, TitledPane character_inventory_window) {
         scene = MainApplication.getScene();
         this.player = player;
         this.health_bar = health_bar;
         this.inventory_window = inventory_window;
+        this.character_inventory_window = character_inventory_window;
         movement(); // Initialize movement controls
         startGameLoop(); // Start the game loop
     }
@@ -61,6 +63,9 @@ public class key_handler {
                 case J:
                     player.changeCurrent_health_points(-5);
                     health_bar.setProgress(player.getHealth_points());
+                    break;
+                case C:
+                    character_inventory_window.setVisible(!character_inventory_window.isVisible());
                     break;
                 case I:
                     inventory_window.setVisible(!inventory_window.isVisible());

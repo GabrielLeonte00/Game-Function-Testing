@@ -27,6 +27,7 @@ import static javafx.scene.input.MouseButton.SECONDARY;
 public class MainController {
     //Variables
     private double offset_initialX, offset_initialY;
+    private boolean top_bar = false;
     private final List<item> list = new ArrayList<>();
     private player player;
     //FXML Variables
@@ -41,6 +42,8 @@ public class MainController {
     @FXML
     TitledPane inventory_window;
     @FXML
+    TitledPane character_inventory_window;
+    @FXML
     ListView<item> inventory_list_view;
 
     //FXML Functions
@@ -52,7 +55,7 @@ public class MainController {
         in_game_menu.setVisible(true);
         player = new player();
 
-        new key_handler(player, health_bar, inventory_window);
+        new key_handler(player, health_bar, inventory_window, character_inventory_window);
         inventory_functions();
 
         //Position player and the health_bar
@@ -73,6 +76,9 @@ public class MainController {
         health_bar.setLayoutY(game_scene.getHeight() - 50);
         health_bar.setProgress(player.getHealth_points());
         health_bar.setVisible(true);
+
+        character_inventory_window.setLayoutX(main_window.getWidth() - character_inventory_window.getWidth() - 10);
+
     }
 
     @FXML
@@ -167,6 +173,20 @@ public class MainController {
             inventory_window.setTranslateX(e.getSceneX() - offset_initialX);
             inventory_window.setTranslateY(e.getSceneY() - offset_initialY);
         });
+        character_inventory_window.setOnMousePressed(e -> {
+            if(e.getY() <= 20) {
+                top_bar = true;
+                offset_initialX = e.getSceneX() - character_inventory_window.getTranslateX();
+                offset_initialY = e.getSceneY() - character_inventory_window.getTranslateY();
+            }
+        });
+        character_inventory_window.setOnMouseDragged(e -> {
+            if (top_bar) {
+                character_inventory_window.setTranslateX(e.getSceneX() - offset_initialX);
+                character_inventory_window.setTranslateY(e.getSceneY() - offset_initialY);
+            }
+        });
+        character_inventory_window.setOnMouseReleased(_ -> top_bar = false);
     }
 
     private void addItemToGameScene(item item) {
