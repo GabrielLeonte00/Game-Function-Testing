@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -14,12 +16,69 @@
     <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Pane fx:id="game_scene" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
     </AnchorPane>
-    <TitledPane fx:id="inventory_window" animated="false" collapsible="false" layoutX="10.0" layoutY="50.0"
-                prefHeight="400.0" prefWidth="300.0" text="Inventory" visible="false">
+    <TitledPane fx:id="character_inventory_window" animated="false" collapsible="false" layoutX="310.0" layoutY="50.0"
+                prefHeight="459.0" prefWidth="300.0" text="Character inventory" visible="false">
         <font>
             <Font name="Arial Bold" size="12.0"/>
         </font>
-        <ListView fx:id="inventory_list_view" prefHeight="200.0" prefWidth="200.0"/>
+        <Pane layoutY="5.0">
+            <Pane layoutX="117.0" layoutY="14.0" prefHeight="65.0" prefWidth="65.0" style="-fx-border-color: blue;">
+                <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@resources/basic/helmet.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="102.0" layoutY="85.0" prefHeight="126.0" prefWidth="96.0"
+                  style="-fx-border-color: blue;">
+                <ImageView fitHeight="150.0" fitWidth="96.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@resources/basic/chest-armor.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="110.0" layoutY="219.0" prefHeight="128.0" prefWidth="80.0"
+                  style="-fx-border-color: blue;">
+                <ImageView fitHeight="128.0" fitWidth="80.0" layoutY="24.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@resources/basic/armored-pants.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="118.0" layoutY="356.0" prefHeight="64.0" prefWidth="64.0"
+                  style="-fx-border-color: blue;">
+                <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@resources/basic/leg-armor.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="204.0" layoutY="85.0" prefHeight="128.0" prefWidth="64.0"
+                  style="-fx-border-color: blue;">
+                <ImageView fitHeight="124.0" fitWidth="64.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@resources/basic/bracer-L.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="33.0" layoutY="85.0" prefHeight="128.0" prefWidth="64.0" style="-fx-border-color: blue;">
+                <ImageView fitHeight="128.0" fitWidth="64.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@resources/basic/bracer-R.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="204.0" layoutY="219.0" prefHeight="64.0" prefWidth="64.0"
+                  style="-fx-border-color: blue;">
+                <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@resources/basic/gauntlet-L.png"/>
+                </ImageView>
+            </Pane>
+            <Pane layoutX="33.0" layoutY="219.0" prefHeight="64.0" prefWidth="64.0" style="-fx-border-color: blue;">
+                <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@resources/basic/gauntlet-R.png"/>
+                </ImageView>
+            </Pane>
+        </Pane>
+    </TitledPane>
+    <TitledPane fx:id="inventory_window" animated="false" collapsible="false" layoutX="10.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" text="Inventory" visible="false">
+        <font>
+            <Font name="Arial Bold" size="12.0" />
+        </font>
+        <ListView fx:id="inventory_list_view" prefHeight="200.0" prefWidth="200.0" />
     </TitledPane>
     <ProgressBar fx:id="health_bar" prefWidth="300.0" progress="0.0" stylesheets="@../../../progress_bar.css" visible="false" />
     <MenuBar layoutX="207.0" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -28,7 +87,7 @@
             <MenuItem mnemonicParsing="false" text="Close" />
         </Menu>
         <Menu fx:id="in_game_menu" mnemonicParsing="false" text="In-game" visible="false">
-            <MenuItem mnemonicParsing="false" onAction="#menu_item_addSomething_action" text="AddSomething"/>
+            <MenuItem mnemonicParsing="false" onAction="#menu_item_addSomething_action" text="AddSomething" />
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
             <MenuItem mnemonicParsing="false" text="About" />
